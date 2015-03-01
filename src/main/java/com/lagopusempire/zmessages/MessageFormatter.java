@@ -8,7 +8,7 @@ import org.bukkit.ChatColor;
  */
 public class MessageFormatter
 {
-    private final char VARIABLE_DECORATOR = '%';
+    private static final char VARIABLE_DECORATOR = '%';
     
     private String contents;
     private boolean colorized = false;
