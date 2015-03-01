@@ -20,6 +20,7 @@ public class Messages
         addMessage(config, "notFound.reply");
         addMessage(config, "notFound.general");
         addMessage(config, "error.noTarget");
+        addMessage(config, "error.noMessage");
     }
     
     private void addMessage(FileConfiguration config, String messagePath)
