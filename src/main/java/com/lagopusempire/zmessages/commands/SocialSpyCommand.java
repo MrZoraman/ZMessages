@@ -17,7 +17,7 @@ public class SocialSpyCommand extends CommandBase
     }
 
     @Override
-    public boolean onCommand(CommandSender cs, Command cmnd, String string, String[] strings)
+    public boolean onCommand(CommandSender sender, Command cmd, String alias, String[] args)
     {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
