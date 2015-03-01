@@ -73,4 +73,28 @@ public class MessageFormatterTest
         
         Assert.assertEquals(null, expected, result);
     }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void testEmptyStringCreation()
+    {
+        MessageFormatter.create("");
+    }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void testNullStringCreation()
+    {
+        MessageFormatter.create(null);
+    }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void testEmptyVariableArgument()
+    {
+        MessageFormatter.create("stuff").replace("", "stuff");
+    }
+    
+    @Test(expected = IllegalArgumentException.class)
+    public void testNullVariableArgument()
+    {
+        MessageFormatter.create("stuff").replace(null, "stuff");
+    }
 }

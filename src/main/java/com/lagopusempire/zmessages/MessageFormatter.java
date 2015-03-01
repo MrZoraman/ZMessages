@@ -15,6 +15,8 @@ public class MessageFormatter
     
     private MessageFormatter(String contents)
     {
+        if(contents == null || contents.isEmpty()) throw new IllegalArgumentException("Contents cannot be null/empty!");
+        
         char[] chars = contents.toCharArray();
         boolean inDecorators = false;
         
@@ -57,6 +59,8 @@ public class MessageFormatter
     
     public MessageFormatter replace(String variable, String replacement)
     {
+        if(variable == null || variable.isEmpty()) throw new IllegalArgumentException("variable connot be null/empty!");
+        
         String toReplace = (new StringBuilder(variable.length() + 2))
                 .append(VARIABLE_DECORATOR)
                 .append(variable.toLowerCase())
