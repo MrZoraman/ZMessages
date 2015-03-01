@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 import org.bukkit.Bukkit;
+import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -36,7 +37,7 @@ public class MessageSystem
         this.plugin = plugin;
     }
     
-    public void sendMessage(Player from, Player to, String message)
+    public void sendMessage(CommandSender from, CommandSender to, String message)
     {
         if(from == null) throw new IllegalArgumentException("From player cannot be null!");
         
@@ -49,14 +50,14 @@ public class MessageSystem
         
         broadcastToSocialSpies(messageForSocialSpy);
         
-        latestSenders.put(to.getUniqueId(), from.getUniqueId());
+        latestSenders.put(Utils.toUUID(to), Utils.toUUID(from));
     }
     
-    public void reply(Player from, String message)
+    public void reply(CommandSender from, String message)
     {
         if(from == null) throw new IllegalArgumentException("From player cannot be null!");
         
-        Player to = getLatestSender(from.getUniqueId());
+        CommandSender to = getLatestSender(Utils.toUUID(from));
         
         if(to == null)
         {
@@ -81,6 +82,7 @@ public class MessageSystem
             Player player = Bukkit.getPlayer(uuid);
             if(player == null)
             {
+                //TODO: the one config boolean option
                 it.remove();
                 continue;
             }
@@ -89,11 +91,11 @@ public class MessageSystem
         }
     }
     
-    private MessageFormatter format(MessageFormatter formatter, Player from, Player to, String message)
+    private MessageFormatter format(MessageFormatter formatter, CommandSender from, CommandSender to, String message)
     {
         return formatter
-                .replace("sender", from.getName())
-                .replace("reciever", to.getName())
+                .replace("sender", Utils.getName(from))
+                .replace("reciever", Utils.getName(to))
                 .replace("message", message)
                 .colorize();
     }
@@ -122,11 +124,19 @@ public class MessageSystem
      * @param recipient The recipient
      * @return The player who last sent a message to the recipient, or null if there is none or the player is no longer online
      */
-    private Player getLatestSender(UUID recipient)
+    private CommandSender getLatestSender(UUID recipient)
     {
-        UUID theOneWhoLastSentToRecipient = latestSenders.get(recipient);
+        if(!latestSenders.containsKey(recipient))
+        {
+            return null;
+        }
         
-        if(theOneWhoLastSentToRecipient == null) return null;
+        UUID theOneWhoLastSentToRecipient = latestSenders.get(recipient);
+            
+        if(theOneWhoLastSentToRecipient == null) 
+        {
+            return Bukkit.getConsoleSender();
+        }
         
         return Bukkit.getPlayer(theOneWhoLastSentToRecipient);
     }
