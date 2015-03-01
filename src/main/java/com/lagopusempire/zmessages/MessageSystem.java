@@ -22,14 +22,12 @@ public class MessageSystem
     private final Map<UUID, UUID> latestSenders = new HashMap<>();
                //recipient, the one who last messaged the recipient
     private final boolean removeSocialspyOnLogout;
-    private final JavaPlugin plugin;
     
     public MessageSystem(JavaPlugin plugin, Messages messages)
     {
         removeSocialspyOnLogout = plugin.getConfig().getBoolean("Remove_social_spy_on_logout");
         
         this.messages = messages;
-        this.plugin = plugin;
     }
     
     public void sendMessage(CommandSender from, CommandSender to, String message)
