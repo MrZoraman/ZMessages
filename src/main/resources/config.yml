@@ -1,9 +1,9 @@
 Remove_social_spy_on_logout: false
 messages:
     format:
-        sender: '&8You -> %reciever%: %message%'
-        reciever: '&8%sender% -> you: %message%'
-        socialspy: '&8%sender% -> %reciever%: %message%'
+        sender: '&7You -> %reciever%: %message%'
+        reciever: '&7%sender% -> you: %message%'
+        socialspy: '&7%sender% -> %reciever%: %message%'
     notFound:
         general: '&c%reciever% is not online!'
         reply: '&cYou do not have someone to reply to! Are they online?'
@@ -12,7 +12,7 @@ messages:
         noMessage: '&cPlease write a message!'
         sentToSelf: '&cYou can not send a message to yourself!'
     socialspy:
-        activated: '&aYou are now in social spy mode'
-        deactivated: '&bYou are no longer in social spy mode'
-        prefix: '&8[socialspy] '
+        activated: '&7Social spy mode: &6ON'
+        deactivated: '&7Social spy mode: &6OFF'
+        prefix: '&7[socialspy] '
     reload: '&aZMessages config reloaded.'
