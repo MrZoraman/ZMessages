@@ -3,6 +3,7 @@ version: ${project.version}
 author: MrZoraman
 main: ${project.groupId}.zmessages.${project.artifactId}
 description: ${project.description}
+website: http://dev.bukkit.org/bukkit-plugins/zmessages/
 commands:
   msg:
     description: sends a player a private message
