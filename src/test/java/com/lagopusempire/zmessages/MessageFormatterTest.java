@@ -23,6 +23,6 @@ public class MessageFormatterTest
                 .replace("d", "4")
                 .toString();
         
-        Assert.assertEquals(null, result, expected);
+        Assert.assertEquals(null, expected, result);
     }
 }
