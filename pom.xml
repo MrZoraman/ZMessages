@@ -67,7 +67,7 @@
                 </includes>
             </resource>
             <resource>
-                <directory>src/main/resources/pluginYaml/${build.profile.id}</directory>
+                <directory>src/main/resources</directory>
                 <filtering>true</filtering>
                 <includes>
                     <include>plugin.yml</include>

@@ -1,7 +1,7 @@
 name: ${project.artifactId}
 version: ${project.version}
 author: MrZoraman
-main: ${project.groupId}.${project.artifactId}
+main: ${project.groupId}.zmessages.${project.artifactId}
 description: ${project.description}
 commands:
   msg:
