@@ -1,0 +1,45 @@
+name: ${project.artifactId}
+version: ${project.version}
+author: MrZoraman
+main: ${project.groupId}.${project.artifactId}
+description: ${project.description}
+commands:
+  msg:
+    description: sends a player a private message
+    aliases: [tell, pm, write, w]
+    permission: ZMessages.msg
+  reply:
+    description: replies to the most recent private message
+    aliases: r
+    permission: ZMessages.reply
+  socialspy:
+    description: views all sent private messages
+    permission: ZMessages.socialspy
+  zmessages:
+    description: Other Functionalities
+    usage: /<command> help - Shows the help
+permissions:
+  ZMessages.msg:
+    description: Allows you to send a private message
+    default: true
+  ZMessages.reply:
+    description: Allows you use a reply shortcut
+    default: true
+  ZMessages.socialspy:
+    description: Allows you to recieve all private messages
+    default: op
+  ZMessages.reload:
+    description: Allows you to reload the config
+    default: op
+  ZMessages.help:
+    description: Allows you to view the help
+    default: true
+  ZMessages.*:
+    children:
+      ZMessages.msg: true
+      ZMessages.reply: true
+      ZMessages.socialspy: true
+      ZMessages.reload: true
+      ZMessages.help: true
+    description: Gives access to all private messaging commands
+    
