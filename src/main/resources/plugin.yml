@@ -19,8 +19,8 @@ commands:
     permission: ZMessages.socialspy
     usage: /<command>
   zmessages:
-    description: Other Functionalities
-    usage: /<command> help - Shows the help
+    description: Reloads the plugin
+    usage: /<command>
 permissions:
   ZMessages.msg:
     description: Allows you to send a private message
@@ -34,15 +34,11 @@ permissions:
   ZMessages.reload:
     description: Allows you to reload the config
     default: op
-  ZMessages.help:
-    description: Allows you to view the help
-    default: true
   ZMessages.*:
     children:
       ZMessages.msg: true
       ZMessages.reply: true
       ZMessages.socialspy: true
       ZMessages.reload: true
-      ZMessages.help: true
     description: Gives access to all private messaging commands
     
