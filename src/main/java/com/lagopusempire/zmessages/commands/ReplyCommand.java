@@ -1,7 +1,10 @@
 package com.lagopusempire.zmessages.commands;
 
+import com.lagopusempire.zmessages.MessageFormatter;
 import com.lagopusempire.zmessages.MessageSystem;
 import com.lagopusempire.zmessages.Messages;
+import com.lagopusempire.zmessages.Utils;
+import java.util.Arrays;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -20,6 +23,16 @@ public class ReplyCommand extends CommandBase
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String alias, String[] args)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(args.length < 1)
+        {
+            Utils.sendMessage(sender, MessageFormatter.create(messages.get("error.noMessage")).colorize());
+            return false;
+        }
+        
+        String message = Utils.toMessage(Arrays.copyOfRange(args, 1, args.length));
+        
+        messageSystem.reply(sender, message);
+        
+        return true;
     }
 }
