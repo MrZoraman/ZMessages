@@ -20,6 +20,7 @@ commands:
     usage: /<command>
   zmessages:
     description: Reloads the plugin
+    permission: ZMessages.reload
     usage: /<command>
 permissions:
   ZMessages.msg:
