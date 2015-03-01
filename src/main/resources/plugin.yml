@@ -8,13 +8,16 @@ commands:
     description: sends a player a private message
     aliases: [tell, pm, write, w]
     permission: ZMessages.msg
+    usage: /<command> [PlayerName] [Message]
   reply:
     description: replies to the most recent private message
     aliases: r
     permission: ZMessages.reply
+    usage: /<command>
   socialspy:
     description: views all sent private messages
     permission: ZMessages.socialspy
+    usage: /<command>
   zmessages:
     description: Other Functionalities
     usage: /<command> help - Shows the help
