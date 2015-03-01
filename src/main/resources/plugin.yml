@@ -13,7 +13,7 @@ commands:
     description: replies to the most recent private message
     aliases: r
     permission: ZMessages.reply
-    usage: /<command>
+    usage: /<command> [Message]
   socialspy:
     description: views all sent private messages
     permission: ZMessages.socialspy
