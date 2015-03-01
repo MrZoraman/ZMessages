@@ -15,7 +15,7 @@ import org.bukkit.plugin.java.JavaPlugin;
  */
 public class ReplyCommand extends CommandBase
 {
-    public ReplyCommand(JavaPlugin plugin, MessageSystem messageSystem, Messages messages)
+    public ReplyCommand(MessageSystem messageSystem, Messages messages)
     {
         super(messageSystem, messages);
     }

@@ -15,7 +15,7 @@ import org.bukkit.plugin.java.JavaPlugin;
  */
 public class MsgCommand extends CommandBase
 {
-    public MsgCommand(JavaPlugin plugin, MessageSystem messageSystem, Messages messages)
+    public MsgCommand(MessageSystem messageSystem, Messages messages)
     {
         super(messageSystem, messages);
     }

@@ -15,7 +15,7 @@ import org.bukkit.plugin.java.JavaPlugin;
  */
 public class SocialSpyCommand extends CommandBase
 {
-    public SocialSpyCommand(JavaPlugin plugin, MessageSystem messageSystem, Messages messages)
+    public SocialSpyCommand(MessageSystem messageSystem, Messages messages)
     {
         super(messageSystem, messages);
     }

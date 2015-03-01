@@ -26,9 +26,9 @@ public class ZMessages extends JavaPlugin
         
         registerEvents();
         
-        getCommand("msg").setExecutor(new MsgCommand(this, messageSystem, messages));
-        getCommand("reply").setExecutor(new ReplyCommand(this, messageSystem, messages));
-        getCommand("socialspy").setExecutor(new SocialSpyCommand(this, messageSystem, messages));
+        getCommand("msg").setExecutor(new MsgCommand(messageSystem, messages));
+        getCommand("reply").setExecutor(new ReplyCommand(messageSystem, messages));
+        getCommand("socialspy").setExecutor(new SocialSpyCommand(messageSystem, messages));
         
         getCommand("zmessages").setExecutor(new ZMessagesCommand(this, messages));
     }
