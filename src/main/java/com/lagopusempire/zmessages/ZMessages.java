@@ -1,6 +1,7 @@
 package com.lagopusempire.zmessages;
 
 import com.lagopusempire.zmessages.commands.*;
+import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
@@ -20,7 +21,10 @@ public class ZMessages extends JavaPlugin
         getConfig().options().copyDefaults(true);
         saveConfig();
         
-        reload();
+        messages = new Messages(getConfig());
+        messageSystem = new MessageSystem(messages);
+        
+        registerEvents();
         
         getCommand("msg").setExecutor(new MsgCommand(this, messageSystem, messages));
         getCommand("reply").setExecutor(new ReplyCommand(this, messageSystem, messages));
@@ -35,22 +39,17 @@ public class ZMessages extends JavaPlugin
         getConfig().options().copyDefaults(true);
         saveConfig();
         
-        if(messages == null)
-        {
-            messages = new Messages(getConfig());
-        }
-        else
-        {
-            messages.reload(getConfig());
-        }
+        messages.reload(getConfig());
         
-        if(messageSystem == null)
+        HandlerList.unregisterAll(messageSystem);
+        registerEvents();
+    }
+    
+    private void registerEvents()
+    {
+        if(getConfig().getBoolean("Remove_social_spy_on_logout"))
         {
-            messageSystem = new MessageSystem(getConfig(), messages);
-        }
-        else
-        {
-            messageSystem.reload(getConfig());
+            getServer().getPluginManager().registerEvents(messageSystem, this);
         }
     }
 }

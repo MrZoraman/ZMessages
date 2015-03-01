@@ -8,31 +8,32 @@ import java.util.Set;
 import java.util.UUID;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerQuitEvent;
 
 /**
  *
  * @author MrZoraman
  */
-public class MessageSystem
+public class MessageSystem implements Listener
 {
     private final Messages messages;
     private final Set<UUID> socialSpies = new HashSet<>();
     private final Map<UUID, UUID> latestSenders = new HashMap<>();
                //recipient, the one who last messaged the recipient
-    private boolean removeSocialspyOnLogout;
     
-    public MessageSystem(FileConfiguration config, Messages messages)
+    public MessageSystem(Messages messages)
     {
-        reload(config);
-        
         this.messages = messages;
     }
     
-    public final void reload(FileConfiguration config)
+    @EventHandler
+    public void onPlayerQuit(PlayerQuitEvent event)
     {
-        removeSocialspyOnLogout = config.getBoolean("Remove_social_spy_on_logout");
+        System.out.println("event fired!");
+        socialSpies.remove(event.getPlayer().getUniqueId());
     }
     
     public void sendMessage(CommandSender from, CommandSender to, String message)
@@ -88,10 +89,6 @@ public class MessageSystem
             Player player = Bukkit.getPlayer(uuid);
             if(player == null)
             {
-                if(removeSocialspyOnLogout)
-                {
-                    it.remove();
-                }
                 continue;
             }
             
