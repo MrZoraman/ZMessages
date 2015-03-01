@@ -25,20 +25,20 @@ public class MsgCommand extends CommandBase
     {
         if(args.length < 1)
         {
-            Utils.sendMessage(sender, MessageFormatter.create(messages.get("error.noTarget")));
+            Utils.sendMessage(sender, MessageFormatter.create(messages.get("error.noTarget")).colorize());
             return false;
         }
         
         if(args.length < 2)
         {
-            Utils.sendMessage(sender, MessageFormatter.create(messages.get("error.noMessage")));
+            Utils.sendMessage(sender, MessageFormatter.create(messages.get("error.noMessage")).colorize());
             return false;
         }
         
         CommandSender target = Utils.matchCommandSender(args[0]);
         if(target == null)
         {
-            Utils.sendMessage(sender, MessageFormatter.create(messages.get("notFound.general")));
+            Utils.sendMessage(sender, MessageFormatter.create(messages.get("notFound.general")).replace("reciever", args[0]).colorize());
             return true;
         }
         
