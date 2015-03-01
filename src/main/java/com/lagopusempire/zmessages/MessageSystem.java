@@ -43,7 +43,9 @@ public class MessageSystem
         Utils.sendMessage(from, messageForSender);
         Utils.sendMessage(to, messageForReciever);
         
-        broadcastToSocialSpies(messageForSocialSpy);
+        
+        
+        broadcastToSocialSpies(!(Utils.isConsole(to) || Utils.isConsole(from)), messageForSocialSpy);
         
         latestSenders.put(Utils.toUUID(to), Utils.toUUID(from));
     }
@@ -65,9 +67,12 @@ public class MessageSystem
         }
     }
     
-    private void broadcastToSocialSpies(MessageFormatter formatter)
+    private void broadcastToSocialSpies(boolean sendToConsole, MessageFormatter formatter)
     {
-        Utils.sendMessage(null, formatter);
+        if(sendToConsole)
+        {
+            Utils.sendMessage(null, formatter);
+        }
         
         Iterator<UUID> it = socialSpies.iterator();
         while(it.hasNext())
