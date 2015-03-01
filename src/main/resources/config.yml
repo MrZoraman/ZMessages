@@ -2,8 +2,8 @@ Remove_social_spy_on_logout: false
 messages:
     format:
         sender: '&7You -> %receiver%: %message%'
-        reciever: '&7%sender% -> you: %message%'
-        socialspy: '&7%sender% -> %reciever%: %message%'
+        receiver: '&7%sender% -> you: %message%'
+        socialspy: '&7%sender% -> %receiver%: %message%'
     notFound:
         general: '&c%reciever% is not online!'
         reply: '&cYou do not have someone to reply to! Are they online?'
