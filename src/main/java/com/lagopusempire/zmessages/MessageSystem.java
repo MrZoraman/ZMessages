@@ -53,7 +53,7 @@ public class MessageSystem implements Listener
         Utils.sendMessage(from, messageForSender);
         Utils.sendMessage(to, messageForReceiver);
         
-        broadcastToSocialSpies(!(Utils.isConsole(to) || Utils.isConsole(from)), messageForSocialSpy);
+        broadcastToSocialSpies(Utils.toUUID(to), Utils.toUUID(from), messageForSocialSpy);
         
         latestSenders.put(Utils.toUUID(to), Utils.toUUID(from));
     }
@@ -75,9 +75,9 @@ public class MessageSystem implements Listener
         }
     }
     
-    private void broadcastToSocialSpies(boolean sendToConsole, MessageFormatter formatter)
+    private void broadcastToSocialSpies(UUID from, UUID to, MessageFormatter formatter)
     {
-        if(sendToConsole)
+        if(!(from == null || to == null))
         {
             Utils.sendMessage(null, formatter);
         }
@@ -92,7 +92,10 @@ public class MessageSystem implements Listener
                 continue;
             }
             
-            Utils.sendMessage(player, formatter);
+            if(!(uuid.equals(from) || uuid.equals(to)))
+            {
+                Utils.sendMessage(player, formatter);
+            }
         }
     }
     
