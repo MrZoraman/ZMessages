@@ -8,6 +8,7 @@ import java.util.Set;
 import java.util.UUID;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -23,9 +24,11 @@ public class MessageSystem implements Listener
     private final Set<UUID> socialSpies = new HashSet<>();
     private final Map<UUID, UUID> latestSenders = new HashMap<>();
                //recipient, the one who last messaged the recipient
+    private boolean consoleIsSocialSpy;
     
-    public MessageSystem(Messages messages)
+    public MessageSystem(FileConfiguration config, Messages messages)
     {
+        this.consoleIsSocialSpy = config.getBoolean("Console_is_social_spy");
         this.messages = messages;
     }
     
@@ -76,7 +79,7 @@ public class MessageSystem implements Listener
     
     private void broadcastToSocialSpies(UUID from, UUID to, MessageFormatter formatter)
     {
-        if(!(from == null || to == null))
+        if(consoleIsSocialSpy && !(from == null || to == null))
         {
             Utils.sendMessage(null, formatter);
         }
@@ -146,5 +149,10 @@ public class MessageSystem implements Listener
         }
         
         return Bukkit.getPlayer(theOneWhoLastSentToRecipient);
+    }
+    
+    public void reload(FileConfiguration config)
+    {
+        consoleIsSocialSpy = config.getBoolean("Console_is_social_spy");
     }
 }

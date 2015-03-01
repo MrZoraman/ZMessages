@@ -22,7 +22,7 @@ public class ZMessages extends JavaPlugin
         saveConfig();
         
         messages = new Messages(getConfig());
-        messageSystem = new MessageSystem(messages);
+        messageSystem = new MessageSystem(getConfig(), messages);
         
         registerEvents();
         
@@ -40,6 +40,7 @@ public class ZMessages extends JavaPlugin
         saveConfig();
         
         messages.reload(getConfig());
+        messageSystem.reload(getConfig());
         
         HandlerList.unregisterAll(messageSystem);
         registerEvents();
