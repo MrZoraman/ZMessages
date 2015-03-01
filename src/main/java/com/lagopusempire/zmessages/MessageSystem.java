@@ -34,7 +34,7 @@ public class MessageSystem
         MessageFormatter messageForSocialSpy = format(MessageFormatter.create(format_socialspy), from, to, message);
         
         from.sendMessage(messageForSender.toString());
-        to.sendMessage(to.toString());
+        to.sendMessage(messageForReciever.toString());
         
         broadcastToSocialSpies(messageForSocialSpy);
     }
