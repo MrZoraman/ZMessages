@@ -14,10 +14,17 @@ public class Messages
     
     public Messages(FileConfiguration config)
     {
-        messages.put("format_sender", config.getString("messages.format.sender"));
-        messages.put("format_reciever", config.getString("messages.format.reciever"));
-        messages.put("format_socialspy", config.getString("messages.format.socialspy"));
-        messages.put("not_online_reply", config.getString("messages.notFound.reply"));
+        addMessage(config, "format.sender");
+        addMessage(config, "format.reciever");
+        addMessage(config, "format.socialspy");
+        addMessage(config, "notFound.reply");
+        addMessage(config, "notFound.general");
+        addMessage(config, "error.noTarget");
+    }
+    
+    private void addMessage(FileConfiguration config, String messagePath)
+    {
+        messages.put(messagePath, config.getString("messages." + messagePath));
     }
     
     public String get(String key)

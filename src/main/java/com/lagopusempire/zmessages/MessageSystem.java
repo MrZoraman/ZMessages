@@ -36,9 +36,9 @@ public class MessageSystem
     {
         if(from == null) throw new IllegalArgumentException("From player cannot be null!");
         
-        MessageFormatter messageForSender = format(MessageFormatter.create(messages.get("format_sender")), from, to, message);
-        MessageFormatter messageForReciever = format(MessageFormatter.create(messages.get("format_reciever")), from, to, message);
-        MessageFormatter messageForSocialSpy = format(MessageFormatter.create(messages.get("format_socialspy")), from, to, message);
+        MessageFormatter messageForSender = format(MessageFormatter.create(messages.get("format.sender")), from, to, message);
+        MessageFormatter messageForReciever = format(MessageFormatter.create(messages.get("format.reciever")), from, to, message);
+        MessageFormatter messageForSocialSpy = format(MessageFormatter.create(messages.get("format.socialspy")), from, to, message);
         
         from.sendMessage(messageForSender.toString());
         to.sendMessage(messageForReciever.toString());
@@ -56,7 +56,7 @@ public class MessageSystem
         
         if(to == null)
         {
-            String notOnlineMessage = MessageFormatter.create(messages.get("not_online_reply")).colorize().toString();
+            String notOnlineMessage = MessageFormatter.create(messages.get("notFound.reply")).colorize().toString();
             from.sendMessage(notOnlineMessage);
         }
         else
