@@ -32,7 +32,6 @@ public class MessageSystem implements Listener
     @EventHandler
     public void onPlayerQuit(PlayerQuitEvent event)
     {
-        System.out.println("event fired!");
         socialSpies.remove(event.getPlayer().getUniqueId());
     }
     
