@@ -10,3 +10,4 @@ messages:
     error:
         noTarget: '&cPlease specify a player!'
         noMessage: '&cPlease write a message!'
+        sentToSelf: '&cYou can not send a message to yourself!'

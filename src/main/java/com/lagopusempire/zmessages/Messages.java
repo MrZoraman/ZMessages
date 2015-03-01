@@ -21,6 +21,7 @@ public class Messages
         addMessage(config, "notFound.general");
         addMessage(config, "error.noTarget");
         addMessage(config, "error.noMessage");
+        addMessage(config, "error.sentToSelf");
     }
     
     private void addMessage(FileConfiguration config, String messagePath)

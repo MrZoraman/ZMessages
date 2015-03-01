@@ -34,14 +34,18 @@ public class MessageSystem
     {
         if(from == null) throw new IllegalArgumentException("From player cannot be null!");
         
+        if(from == to)
+        {
+            Utils.sendMessage(from, MessageFormatter.create(messages.get("error.sentToSelf")).colorize());
+            return;
+        }
+        
         MessageFormatter messageForSender = format(MessageFormatter.create(messages.get("format.sender")), from, to, message);
         MessageFormatter messageForReciever = format(MessageFormatter.create(messages.get("format.reciever")), from, to, message);
         MessageFormatter messageForSocialSpy = format(MessageFormatter.create(messages.get("format.socialspy")), from, to, message);
         
         Utils.sendMessage(from, messageForSender);
         Utils.sendMessage(to, messageForReciever);
-        
-        
         
         broadcastToSocialSpies(!(Utils.isConsole(to) || Utils.isConsole(from)), messageForSocialSpy);
         
