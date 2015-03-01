@@ -40,8 +40,8 @@ public class MessageSystem
         MessageFormatter messageForReciever = format(MessageFormatter.create(messages.get("format.reciever")), from, to, message);
         MessageFormatter messageForSocialSpy = format(MessageFormatter.create(messages.get("format.socialspy")), from, to, message);
         
-        from.sendMessage(messageForSender.toString());
-        to.sendMessage(messageForReciever.toString());
+        Utils.sendMessage(from, messageForSender);
+        Utils.sendMessage(to, messageForReciever);
         
         broadcastToSocialSpies(messageForSocialSpy);
         
@@ -56,8 +56,8 @@ public class MessageSystem
         
         if(to == null)
         {
-            String notOnlineMessage = MessageFormatter.create(messages.get("notFound.reply")).colorize().toString();
-            from.sendMessage(notOnlineMessage);
+            MessageFormatter notOnlineMessage = MessageFormatter.create(messages.get("notFound.reply")).colorize();
+            Utils.sendMessage(from, notOnlineMessage);
         }
         else
         {
@@ -67,9 +67,8 @@ public class MessageSystem
     
     private void broadcastToSocialSpies(MessageFormatter formatter)
     {
-        plugin.getLogger().info(formatter.stripColors().toString());
+        Utils.sendMessage(null, formatter);
         
-        String message = formatter.toString();
         Iterator<UUID> it = socialSpies.iterator();
         while(it.hasNext())
         {
@@ -84,7 +83,7 @@ public class MessageSystem
                 continue;
             }
             
-            player.sendMessage(message);
+            Utils.sendMessage(player, formatter);
         }
     }
     
