@@ -8,7 +8,6 @@ import java.util.Set;
 import java.util.UUID;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -18,24 +17,18 @@ import org.bukkit.plugin.java.JavaPlugin;
  */
 public class MessageSystem
 {
-    private final String format_sender, format_reciever, format_socialspy;
-    private final String not_online_reply;
+    private final Messages messages;
     private final Set<UUID> socialSpies = new HashSet<>();
     private final Map<UUID, UUID> latestSenders = new HashMap<>();
                //recipient, the one who last messaged the recipient
     private final boolean removeSocialspyOnLogout;
     private final JavaPlugin plugin;
     
-    public MessageSystem(JavaPlugin plugin)
+    public MessageSystem(JavaPlugin plugin, Messages messages)
     {
-        FileConfiguration config = plugin.getConfig();
+        removeSocialspyOnLogout = plugin.getConfig().getBoolean("Remove_social_spy_on_logout");
         
-        format_sender = config.getString("messages.format.sender");
-        format_reciever = config.getString("messages.format.reciever");
-        format_socialspy = config.getString("messages.format.socialspy");
-        not_online_reply = config.getString("messages.notFound.reply");
-        removeSocialspyOnLogout = config.getBoolean("Remove_social_spy_on_logout");
-        
+        this.messages = messages;
         this.plugin = plugin;
     }
     
@@ -43,9 +36,9 @@ public class MessageSystem
     {
         if(from == null) throw new IllegalArgumentException("From player cannot be null!");
         
-        MessageFormatter messageForSender = format(MessageFormatter.create(format_sender), from, to, message);
-        MessageFormatter messageForReciever = format(MessageFormatter.create(format_reciever), from, to, message);
-        MessageFormatter messageForSocialSpy = format(MessageFormatter.create(format_socialspy), from, to, message);
+        MessageFormatter messageForSender = format(MessageFormatter.create(messages.get("format_sender")), from, to, message);
+        MessageFormatter messageForReciever = format(MessageFormatter.create(messages.get("format_reciever")), from, to, message);
+        MessageFormatter messageForSocialSpy = format(MessageFormatter.create(messages.get("format_socialspy")), from, to, message);
         
         from.sendMessage(messageForSender.toString());
         to.sendMessage(messageForReciever.toString());
@@ -63,7 +56,7 @@ public class MessageSystem
         
         if(to == null)
         {
-            String notOnlineMessage = MessageFormatter.create(not_online_reply).colorize().toString();
+            String notOnlineMessage = MessageFormatter.create(messages.get("not_online_reply")).colorize().toString();
             from.sendMessage(notOnlineMessage);
         }
         else

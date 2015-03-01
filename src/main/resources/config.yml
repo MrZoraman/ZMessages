@@ -7,3 +7,5 @@ messages:
     notFound:
         general: '&c%reciever% is not online!'
         reply: '&cYou do not have someone to reply to! Are they online?'
+    error:
+        noTarget: '&cPlease specify a player!'
