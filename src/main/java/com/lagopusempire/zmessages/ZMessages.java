@@ -9,13 +9,15 @@ import org.bukkit.plugin.java.JavaPlugin;
  */
 public class ZMessages extends JavaPlugin
 {
+    private MessageSystem messageSystem;
+    
     @Override
     public void onEnable()
     {
         getConfig().options().copyDefaults(true);
         saveConfig();
         
-        MessageSystem messageSystem = new MessageSystem(this);
+        messageSystem = new MessageSystem(this);
         
         getCommand("msg").setExecutor(new MsgCommand(this, messageSystem));
         getCommand("reply").setExecutor(new ReplyCommand(this, messageSystem));
