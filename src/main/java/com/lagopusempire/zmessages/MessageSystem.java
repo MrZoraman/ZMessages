@@ -7,6 +7,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 import org.bukkit.Bukkit;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -17,6 +18,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class MessageSystem
 {
     private final String format_sender, format_reciever, format_socialspy;
+    private final String not_online_reply;
     private final Set<UUID> socialSpies = new HashSet<>();
     private final Map<UUID, UUID> latestSenders = new HashMap<>();
                //recipient, the one who last messaged the recipient
@@ -24,15 +26,20 @@ public class MessageSystem
     
     public MessageSystem(JavaPlugin plugin)
     {
-        format_sender = plugin.getConfig().getString("format.sender");
-        format_reciever = plugin.getConfig().getString("format.reciever");
-        format_socialspy = plugin.getConfig().getString("format.socialspy");
+        FileConfiguration config = plugin.getConfig();
+        
+        format_sender = config.getString("messages.format.sender");
+        format_reciever = config.getString("messages.format.reciever");
+        format_socialspy = config.getString("messages.format.socialspy");
+        not_online_reply = config.getString("messages.notFound.reply");
         
         this.plugin = plugin;
     }
     
     public void sendMessage(Player from, Player to, String message)
     {
+        if(from == null) throw new IllegalArgumentException("From player cannot be null!");
+        
         MessageFormatter messageForSender = format(MessageFormatter.create(format_sender), from, to, message);
         MessageFormatter messageForReciever = format(MessageFormatter.create(format_reciever), from, to, message);
         MessageFormatter messageForSocialSpy = format(MessageFormatter.create(format_socialspy), from, to, message);
@@ -47,8 +54,19 @@ public class MessageSystem
     
     public void reply(Player from, String message)
     {
+        if(from == null) throw new IllegalArgumentException("From player cannot be null!");
+        
         Player to = getLatestSender(from.getUniqueId());
-        sendMessage(from, to, message);
+        
+        if(to == null)
+        {
+            String notOnlineMessage = MessageFormatter.create(not_online_reply).colorize().toString();
+            from.sendMessage(notOnlineMessage);
+        }
+        else
+        {
+            sendMessage(from, to, message);
+        }
     }
     
     private void broadcastToSocialSpies(MessageFormatter formatter)
