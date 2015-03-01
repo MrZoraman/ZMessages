@@ -9,3 +9,4 @@ messages:
         reply: '&cYou do not have someone to reply to! Are they online?'
     error:
         noTarget: '&cPlease specify a player!'
+        noMessage: '&cPlease write a message!'
