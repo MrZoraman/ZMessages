@@ -12,6 +12,9 @@ public class ZMessages extends JavaPlugin
     @Override
     public void onEnable()
     {
+        getConfig().options().copyDefaults(true);
+        saveConfig();
+        
         getCommand("msg").setExecutor(new MsgCommand(this));
         getCommand("reply").setExecutor(new ReplyCommand(this));
         getCommand("socialspy").setExecutor(new SocialSpyCommand(this));

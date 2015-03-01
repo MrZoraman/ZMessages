@@ -1,0 +1,5 @@
+Remove_social_spy_on_logout: false
+format:
+    sender: '&8You -> %reciever%: %message%'
+    recieving: '&8%reciever% -> you: %message%'
+    socialspy: '&8%sender% -> %reciever%: %message%'
