@@ -17,7 +17,7 @@ public class ReplyCommand extends CommandBase
 {
     public ReplyCommand(JavaPlugin plugin, MessageSystem messageSystem, Messages messages)
     {
-        super(plugin, messageSystem, messages);
+        super(messageSystem, messages);
     }
 
     @Override

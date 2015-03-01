@@ -14,7 +14,7 @@ public class ZMessagesCommand extends CommandBase
 {
     public ZMessagesCommand(JavaPlugin plugin, MessageSystem messageSystem, Messages messages)
     {
-        super(plugin, messageSystem, messages);
+        super(messageSystem, messages);
     }
 
     @Override

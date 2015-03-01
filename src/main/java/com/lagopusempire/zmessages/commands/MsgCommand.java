@@ -17,7 +17,7 @@ public class MsgCommand extends CommandBase
 {
     public MsgCommand(JavaPlugin plugin, MessageSystem messageSystem, Messages messages)
     {
-        super(plugin, messageSystem, messages);
+        super(messageSystem, messages);
     }
 
     @Override

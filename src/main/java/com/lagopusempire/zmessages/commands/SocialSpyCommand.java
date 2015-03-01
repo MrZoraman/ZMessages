@@ -18,7 +18,7 @@ public class SocialSpyCommand extends CommandBase
 {
     public SocialSpyCommand(JavaPlugin plugin, MessageSystem messageSystem, Messages messages)
     {
-        super(plugin, messageSystem, messages);
+        super(messageSystem, messages);
     }
 
     @Override
