@@ -14,7 +14,24 @@ public class MessageFormatter
     
     private MessageFormatter(String contents)
     {
-        this.contents = contents;
+        char[] chars = contents.toCharArray();
+        boolean inDecorators = false;
+        
+        for(int ii = 0; ii < chars.length; ii++)
+        {
+            if(chars[ii] == VARIABLE_DECORATOR)
+            {
+                inDecorators = !inDecorators;
+                continue;
+            }
+            
+            if(inDecorators)
+            {
+                chars[ii] = Character.toLowerCase(chars[ii]);
+            }
+        }
+        
+        this.contents = String.valueOf(chars);
     }
     
     public static MessageFormatter create(String contents)
@@ -38,7 +55,7 @@ public class MessageFormatter
     {
         String toReplace = (new StringBuilder(variable.length() + 2))
                 .append(VARIABLE_DECORATOR)
-                .append(variable)
+                .append(variable.toLowerCase())
                 .append(VARIABLE_DECORATOR)
                 .toString();
         contents = contents.replaceAll(toReplace, replacement);
