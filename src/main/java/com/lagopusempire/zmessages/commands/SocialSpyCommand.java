@@ -1,9 +1,13 @@
 package com.lagopusempire.zmessages.commands;
 
+import com.lagopusempire.zmessages.MessageFormatter;
 import com.lagopusempire.zmessages.MessageSystem;
 import com.lagopusempire.zmessages.Messages;
+import com.lagopusempire.zmessages.Utils;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 /**
@@ -20,6 +24,19 @@ public class SocialSpyCommand extends CommandBase
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String alias, String[] args)
     {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        if(Utils.isConsole(sender))
+        {
+            sender.sendMessage(ChatColor.RED + "Consoles are always in social spy mode!");
+            return true;
+        }
+        
+        Player p = (Player) sender;
+        
+        boolean result = messageSystem.toggleSocialSpy(p.getUniqueId());
+        
+        System.out.println(messages.get("socialspy." + (result ? "activated" : "deactivated")));
+        Utils.sendMessage(sender, MessageFormatter.create(messages.get("socialspy." + (result ? "activated" : "deactivated"))).colorize());
+        
+        return true;
     }
 }

@@ -11,3 +11,7 @@ messages:
         noTarget: '&cPlease specify a player!'
         noMessage: '&cPlease write a message!'
         sentToSelf: '&cYou can not send a message to yourself!'
+    socialspy:
+        activated: '&aYou are now in social spy mode'
+        deactivated: '&bYou are no longer in social spy mode'
+        prefix: '&8[socialspy] '

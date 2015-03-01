@@ -42,7 +42,7 @@ public class MessageSystem
         
         MessageFormatter messageForSender = format(MessageFormatter.create(messages.get("format.sender")), from, to, message);
         MessageFormatter messageForReciever = format(MessageFormatter.create(messages.get("format.reciever")), from, to, message);
-        MessageFormatter messageForSocialSpy = format(MessageFormatter.create(messages.get("format.socialspy")), from, to, message);
+        MessageFormatter messageForSocialSpy = format(MessageFormatter.create(messages.get("socialspy.prefix") + messages.get("format.socialspy")), from, to, message);
         
         Utils.sendMessage(from, messageForSender);
         Utils.sendMessage(to, messageForReciever);

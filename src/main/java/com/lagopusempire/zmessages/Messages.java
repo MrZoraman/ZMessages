@@ -22,6 +22,9 @@ public class Messages
         addMessage(config, "error.noTarget");
         addMessage(config, "error.noMessage");
         addMessage(config, "error.sentToSelf");
+        addMessage(config, "socialspy.activated");
+        addMessage(config, "socialspy.deactivated");
+        addMessage(config, "socialspy.prefix");
     }
     
     private void addMessage(FileConfiguration config, String messagePath)
