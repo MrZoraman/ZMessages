@@ -15,3 +15,4 @@ messages:
         activated: '&aYou are now in social spy mode'
         deactivated: '&bYou are no longer in social spy mode'
         prefix: '&8[socialspy] '
+    reload: '&aZMessages config reloaded.'

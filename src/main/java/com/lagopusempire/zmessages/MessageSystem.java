@@ -8,8 +8,8 @@ import java.util.Set;
 import java.util.UUID;
 import org.bukkit.Bukkit;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
-import org.bukkit.plugin.java.JavaPlugin;
 
 /**
  *
@@ -21,13 +21,18 @@ public class MessageSystem
     private final Set<UUID> socialSpies = new HashSet<>();
     private final Map<UUID, UUID> latestSenders = new HashMap<>();
                //recipient, the one who last messaged the recipient
-    private final boolean removeSocialspyOnLogout;
+    private boolean removeSocialspyOnLogout;
     
-    public MessageSystem(JavaPlugin plugin, Messages messages)
+    public MessageSystem(FileConfiguration config, Messages messages)
     {
-        removeSocialspyOnLogout = plugin.getConfig().getBoolean("Remove_social_spy_on_logout");
+        reload(config);
         
         this.messages = messages;
+    }
+    
+    public final void reload(FileConfiguration config)
+    {
+        removeSocialspyOnLogout = config.getBoolean("Remove_social_spy_on_logout");
     }
     
     public void sendMessage(CommandSender from, CommandSender to, String message)

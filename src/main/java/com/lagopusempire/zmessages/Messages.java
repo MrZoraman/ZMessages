@@ -14,6 +14,11 @@ public class Messages
     
     public Messages(FileConfiguration config)
     {
+        reload(config);
+    }
+    
+    public final void reload(FileConfiguration config)
+    {
         addMessage(config, "format.sender");
         addMessage(config, "format.reciever");
         addMessage(config, "format.socialspy");
@@ -25,6 +30,7 @@ public class Messages
         addMessage(config, "socialspy.activated");
         addMessage(config, "socialspy.deactivated");
         addMessage(config, "socialspy.prefix");
+        addMessage(config, "reload");
     }
     
     private void addMessage(FileConfiguration config, String messagePath)
