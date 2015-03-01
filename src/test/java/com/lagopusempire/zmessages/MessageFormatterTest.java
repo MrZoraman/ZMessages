@@ -29,8 +29,8 @@ public class MessageFormatterTest
     @Test
     public void testCapUsage()
     {
-        String in = "%A% %b% %C% %d%";
-        String expected = "1 2 3 4";
+        String in = "%A% X %b% y %C% Z %d%";
+        String expected = "1 X 2 y 3 Z 4";
         
         String result = MessageFormatter
                 .create(in)
@@ -38,6 +38,23 @@ public class MessageFormatterTest
                 .replace("b", "2")
                 .replace("c", "3")
                 .replace("d", "4")
+                .toString();
+        
+        Assert.assertEquals(null, expected, result);
+    }
+    
+    @Test
+    public void testSpacedVariables()
+    {
+        String in = "%a w% %b x% %c y% %d z%";
+        String expected = "1 2 3 4";
+        
+        String result = MessageFormatter
+                .create(in)
+                .replace("a w", "1")
+                .replace("b x", "2")
+                .replace("c y", "3")
+                .replace("d z", "4")
                 .toString();
         
         Assert.assertEquals(null, expected, result);
