@@ -59,4 +59,18 @@ public class MessageFormatterTest
         
         Assert.assertEquals(null, expected, result);
     }
+    
+    @Test
+    public void testStrippingColors()
+    {
+        String in = "&ab &cd";
+        String expected = "b d";
+        
+        String result = MessageFormatter
+                .create(in)
+                .stripColors()
+                .toString();
+        
+        Assert.assertEquals(null, expected, result);
+    }
 }

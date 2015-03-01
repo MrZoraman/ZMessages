@@ -11,6 +11,7 @@ public class MessageFormatter
     private final char VARIABLE_DECORATOR = '%';
     
     private String contents;
+    private boolean colorized = false;
     
     private MessageFormatter(String contents)
     {
@@ -41,6 +42,8 @@ public class MessageFormatter
     
     public MessageFormatter stripColors()
     {
+        if(!colorized) colorize();
+        
         contents = ChatColor.stripColor(contents);
         return this;
     }
@@ -48,6 +51,7 @@ public class MessageFormatter
     public MessageFormatter colorize()
     {
         contents = ChatColor.translateAlternateColorCodes('&', contents);
+        colorized = true;
         return this;
     }
     
