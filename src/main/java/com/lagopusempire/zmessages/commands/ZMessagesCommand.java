@@ -1,14 +1,12 @@
 package com.lagopusempire.zmessages.commands;
 
 import com.lagopusempire.zmessages.MessageFormatter;
-import com.lagopusempire.zmessages.MessageSystem;
 import com.lagopusempire.zmessages.Messages;
 import com.lagopusempire.zmessages.Utils;
 import com.lagopusempire.zmessages.ZMessages;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.plugin.java.JavaPlugin;
 
 /**
  *
