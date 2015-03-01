@@ -1,6 +1,7 @@
 package com.lagopusempire.zmessages.commands;
 
 import com.lagopusempire.zmessages.MessageSystem;
+import com.lagopusempire.zmessages.Messages;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -11,9 +12,9 @@ import org.bukkit.plugin.java.JavaPlugin;
  */
 public class ZMessagesCommand extends CommandBase
 {
-    public ZMessagesCommand(JavaPlugin plugin, MessageSystem messageSystem)
+    public ZMessagesCommand(JavaPlugin plugin, MessageSystem messageSystem, Messages messages)
     {
-        super(plugin, messageSystem);
+        super(plugin, messageSystem, messages);
     }
 
     @Override
