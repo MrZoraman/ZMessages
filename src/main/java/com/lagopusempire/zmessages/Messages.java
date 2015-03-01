@@ -20,7 +20,7 @@ public class Messages
     public final void reload(FileConfiguration config)
     {
         addMessage(config, "format.sender");
-        addMessage(config, "format.reciever");
+        addMessage(config, "format.receiver");
         addMessage(config, "format.socialspy");
         addMessage(config, "notFound.reply");
         addMessage(config, "notFound.general");

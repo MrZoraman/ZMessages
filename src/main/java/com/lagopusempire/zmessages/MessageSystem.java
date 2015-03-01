@@ -47,11 +47,11 @@ public class MessageSystem implements Listener
         }
         
         MessageFormatter messageForSender = format(MessageFormatter.create(messages.get("format.sender")), from, to, message);
-        MessageFormatter messageForReciever = format(MessageFormatter.create(messages.get("format.reciever")), from, to, message);
+        MessageFormatter messageForReceiver = format(MessageFormatter.create(messages.get("format.receiver")), from, to, message);
         MessageFormatter messageForSocialSpy = format(MessageFormatter.create(messages.get("socialspy.prefix") + messages.get("format.socialspy")), from, to, message);
         
         Utils.sendMessage(from, messageForSender);
-        Utils.sendMessage(to, messageForReciever);
+        Utils.sendMessage(to, messageForReceiver);
         
         broadcastToSocialSpies(!(Utils.isConsole(to) || Utils.isConsole(from)), messageForSocialSpy);
         
@@ -100,7 +100,7 @@ public class MessageSystem implements Listener
     {
         return formatter
                 .replace("sender", Utils.getName(from))
-                .replace("reciever", Utils.getName(to))
+                .replace("receiver", Utils.getName(to))
                 .replace("message", message)
                 .colorize();
     }

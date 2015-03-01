@@ -38,7 +38,7 @@ public class MsgCommand extends CommandBase
         CommandSender target = Utils.matchCommandSender(args[0]);
         if(target == null)
         {
-            Utils.sendMessage(sender, MessageFormatter.create(messages.get("notFound.general")).replace("reciever", args[0]).colorize());
+            Utils.sendMessage(sender, MessageFormatter.create(messages.get("notFound.general")).replace("receiver", args[0]).colorize());
             return true;
         }
         
