@@ -23,6 +23,7 @@ public class MessageSystem
     private final Set<UUID> socialSpies = new HashSet<>();
     private final Map<UUID, UUID> latestSenders = new HashMap<>();
                //recipient, the one who last messaged the recipient
+    private final boolean removeSocialspyOnLogout;
     private final JavaPlugin plugin;
     
     public MessageSystem(JavaPlugin plugin)
@@ -33,6 +34,7 @@ public class MessageSystem
         format_reciever = config.getString("messages.format.reciever");
         format_socialspy = config.getString("messages.format.socialspy");
         not_online_reply = config.getString("messages.notFound.reply");
+        removeSocialspyOnLogout = config.getBoolean("Remove_social_spy_on_logout");
         
         this.plugin = plugin;
     }
@@ -82,8 +84,10 @@ public class MessageSystem
             Player player = Bukkit.getPlayer(uuid);
             if(player == null)
             {
-                //TODO: the one config boolean option
-                it.remove();
+                if(removeSocialspyOnLogout)
+                {
+                    it.remove();
+                }
                 continue;
             }
             
