@@ -29,7 +29,7 @@ public class ReplyCommand extends CommandBase
             return false;
         }
         
-        String message = Utils.toMessage(Arrays.copyOfRange(args, 1, args.length));
+        String message = Utils.toMessage(Arrays.copyOfRange(args, 0, args.length));
         
         messageSystem.reply(sender, message);
         
