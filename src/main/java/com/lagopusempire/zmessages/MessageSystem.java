@@ -28,7 +28,7 @@ public class MessageSystem implements Listener
     
     public MessageSystem(FileConfiguration config, Messages messages)
     {
-        this.consoleIsSocialSpy = config.getBoolean("Console_is_social_spy");
+        reload(config);//initializes consoleIsSocialSpy
         this.messages = messages;
     }
     
@@ -151,8 +151,8 @@ public class MessageSystem implements Listener
         return Bukkit.getPlayer(theOneWhoLastSentToRecipient);
     }
     
-    public void reload(FileConfiguration config)
+    public final void reload(FileConfiguration config)
     {
-        consoleIsSocialSpy = config.getBoolean("Console_is_social_spy");
+        consoleIsSocialSpy = config.getBoolean("Console_is_socialspy");
     }
 }

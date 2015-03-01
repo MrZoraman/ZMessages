@@ -1,5 +1,5 @@
 Remove_social_spy_on_logout: false
-Console_is_social_spy: true
+Console_is_socialspy: true
 messages:
     format:
         sender: '&7You -> %receiver%: %message%'
