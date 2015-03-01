@@ -18,6 +18,8 @@ public class ZMessages extends JavaPlugin
         getConfig().options().copyDefaults(true);
         saveConfig();
         
+        Utils.setLogger(getLogger());
+        
         messages = new Messages(getConfig());
         messageSystem = new MessageSystem(this, messages);
         
