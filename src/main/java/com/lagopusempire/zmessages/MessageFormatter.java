@@ -17,7 +17,7 @@ public class MessageFormatter
         this.contents = contents;
     }
     
-    public MessageFormatter create(String contents)
+    public static MessageFormatter create(String contents)
     {
         return new MessageFormatter(contents);
     }
