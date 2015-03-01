@@ -1,5 +1,6 @@
 package com.lagopusempire.zmessages.commands;
 
+import com.lagopusempire.zmessages.MessageSystem;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -10,9 +11,9 @@ import org.bukkit.plugin.java.JavaPlugin;
  */
 public class SocialSpyCommand extends CommandBase
 {
-    public SocialSpyCommand(JavaPlugin plugin)
+    public SocialSpyCommand(JavaPlugin plugin, MessageSystem messageSystem)
     {
-        super(plugin);
+        super(plugin, messageSystem);
     }
 
     @Override

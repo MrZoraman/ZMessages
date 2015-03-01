@@ -15,9 +15,11 @@ public class ZMessages extends JavaPlugin
         getConfig().options().copyDefaults(true);
         saveConfig();
         
-        getCommand("msg").setExecutor(new MsgCommand(this));
-        getCommand("reply").setExecutor(new ReplyCommand(this));
-        getCommand("socialspy").setExecutor(new SocialSpyCommand(this));
-        getCommand("zmessages").setExecutor(new ZMessagesCommand(this));
+        MessageSystem messageSystem = new MessageSystem(this);
+        
+        getCommand("msg").setExecutor(new MsgCommand(this, messageSystem));
+        getCommand("reply").setExecutor(new ReplyCommand(this, messageSystem));
+        getCommand("socialspy").setExecutor(new SocialSpyCommand(this, messageSystem));
+        getCommand("zmessages").setExecutor(new ZMessagesCommand(this, messageSystem));
     }
 }
