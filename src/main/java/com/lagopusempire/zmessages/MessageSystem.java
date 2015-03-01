@@ -22,4 +22,8 @@ public class MessageSystem
     {
         
     }
+    
+    public void reply(Player from)
+    {
+    }
 }
